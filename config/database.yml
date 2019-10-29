@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password:
+  socket: /var/run/mysqld/mysqld.sock
+
+development:
+  <<: *default
+  database: vue-app_development
+
+test:
+  <<: *default
+  database: vue-app_test
+
+production:
+  <<: *default
+  database: vue-app_production
+  username: vue-app
+  password: <%= ENV['VUE-APP_DATABASE_PASSWORD'] %>
